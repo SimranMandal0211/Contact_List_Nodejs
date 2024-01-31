@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <%= locals.title %>
+        </title>
+
+        <script src="https://kit.fontawesome.com/df98e19b56.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" type="text/css" href="/css/home.css">
+    </head>
+    <body>
+        <h1 id="page-heading">
+            <i class="fa-solid fa-address-book"></i>
+            My Contact List
+        </h1>
+
+        <ul id="contact-list-container" class="flex">
+            <% for(let i of contact_list) {%>
+                <li class="contact flex">
+                    <div class="details flex">
+                        <p><%= i.name %></p>
+                        <p><%= i.phone %></p>
+                    </div>
+                    <div class="delete-button">
+                        <a href="/delete-contact/?id=<%= i._id %>">
+                            <i class="fas fa-window-close"></i>
+                        </a>
+<!-- when we use param in index.js we don't need to write ?phone= -->
+
+<!-- or we can do chaning as much data we have and want to do NOTE: while writing it we avoid spaces bcoz url have no space-->
+<!-- <a href="/delete-contact/?phone=<%= i.phone %>&name<%= i.name%>">
+        <i class="fas fa-window-close"></i>
+    </a> -->
+                    </div>
+                </li>
+            <% } %>
+        </ul>
+
+
+        <form action="/create-contact" method="POST" class="flex new-contact-form">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <input type="number" name="phone" placeholder="Enter Phone" required>
+
+            <button type="submit">Add Contact</button>
+        </form>
+
+        <script type="text/javascript" src="/js/home.js"></script>
+    </body>
+</html>
